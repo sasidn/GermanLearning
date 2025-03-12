@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Verb Trainer</title>
+</head>
+<body>
+    <h1>German Verb Trainer</h1>
+    <p>Enter a verb in its infinitive form (e.g., 'kommen'):</p>
+
+    <form method="POST">
+        <label for="verb">Verb: </label>
+        <input type="text" id="verb" name="verb" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if verb %}
+        <h2>Practicing verb: {{ verb }}</h2>
+        <form method="POST">
+            {% for i, answer in enumerate(answers) %}
+                <div>
+                    <label>{{ answer.split(":")[0] }}: </label>
+                    <input type="text" name="answer{{ i }}" placeholder="Enter your answer">
+                    <br><br>
+                </div>
+            {% endfor %}
+            <button type="submit">Check Answers</button>
+        </form>
+    {% endif %}
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
+
